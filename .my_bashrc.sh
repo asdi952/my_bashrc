@@ -4,7 +4,7 @@ function mfind(){
 		return 0
 	fi
         local aux=""
-        if [[ $1 != "" ]]; then
+        if [[ $3 != "" ]]; then
 		aux="-type $3"
 	fi
 	echo "find $1 -name $2 $aux -print 2>/dev/null"
@@ -13,7 +13,7 @@ function mfind(){
 
 function cf(){
 	if [[ $1 == "" ]];then
-		ls
+		cd .. && ls
 		return 1
 	fi
 	cd $1 && ls 
@@ -46,8 +46,8 @@ function convert_img_res(){
 	shift
 	local array=$@
 	for e in $array; do
-		echo convert $e -resize "$res" $e
-		convert $e -resize "$res" $e
+		echo convert $e -resize "$res" $e$res
+		convert $e -resize "$res" $e$res
 	done
 }
 
@@ -56,8 +56,8 @@ function convert_img_res_force(){
 	shift
 	local array=$@
 	for e in $array; do
-		echo convert $e -resize "$res!" $e
-		convert $e -resize "$res!" $e
+		echo convert $e -resize "$res!" $e$res
+		convert $e -resize "$res!" $e$res
 	done
 }
 
@@ -71,4 +71,20 @@ function convert_file_format(){
 		echo "convert $e ${wo_ext}.$ext"
 		convert $e ${wo_ext}.$ext
 	done
+}
+function rename(){
+    mv $1 $2
+}
+function send_to_github(){
+    local dir=$BASH_SOURCE
+
+    cd $(dirname $dir)
+
+    if [ ! -d .git ]; then
+        git init 
+    fi 
+    echo "adding file - $(basename $dir)"
+    git add $(basename $dir)
+    git commit -m "automatic save"
+    git push https://github.com/asdi952/my_bashrc master
 }
