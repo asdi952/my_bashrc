@@ -85,6 +85,6 @@ function send_to_github(){
     fi 
     echo "adding file - $(basename $dir)"
     git add $(basename $dir)
-    git commit -m "automatic save"
+    git diff-index --quiet HEAD || git commit -m "automatic save"
     git push https://github.com/asdi952/my_bashrc master
 }
