@@ -88,3 +88,16 @@ function send_to_github(){
     git diff-index --quiet HEAD || git commit -m "automatic save"
     git push https://github.com/asdi952/my_bashrc master
 }
+function reset_bash(){
+
+    cp ~/.bashrc $(mktemp)
+    cp /etc/skels/.bashrc ~/.bashrc
+}
+function reload_bash(){
+    source ~/.bashrc
+}
+
+function add_bash(){
+    echo "source $1" >> ~/.bashrc
+}
+
