@@ -20,9 +20,10 @@ bash_paths["ome"]="$HOME/.bashrc"
 
 
 HISTCONTROL=ignoredups
-PS1="\n\[\e[07;32m\] ---> \[\e[00m\] \[\e[07;37m\]"
+PS1="\n\[\e[07;32m\] ---> \[\e[00m\] "
+#PS1="\n\[\e[07;32m\] ---> \[\e[00m\] \[\e[07;3m\]"
 #PS1="\n\[\e[07;32m\] ---> \[\e[00m\] \[\e[07;37m\]" -- good one
-PS0="\[\e[00m\]"
+#PS0="\[\e[00m\]"
 #PS1="\e\n\e[7;32m ---> \e[m "
 #PS3="\n"
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\0
